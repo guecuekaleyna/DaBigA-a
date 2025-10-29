@@ -7,6 +7,8 @@ from Tile import Tile
 
 pygame.init()
 
+#lol
+
 width, height = 600, 600
 screen = pygame.display.set_mode((width, height))
 clock = pygame.time.Clock()
