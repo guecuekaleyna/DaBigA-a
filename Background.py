@@ -6,3 +6,4 @@ class Background:
 
     def draw(self, screen):
         screen.fill(self.color)
+#1

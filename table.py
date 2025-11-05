@@ -41,7 +41,7 @@ class Table:
             for tile in row:
                 if tile.color == pygame.Color('red'):
                     tile.change_color(pygame.Color('green'))
-
+#3
     def randomize_tiles(self):
         green_tiles = [tile for row in self.tiles for tile in row if tile.color == pygame.Color('green')]
         if not green_tiles:

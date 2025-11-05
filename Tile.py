@@ -18,3 +18,4 @@ class Tile:
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect, 0)
         pygame.draw.rect(screen, (0, 0, 0), self.rect, 1)
+#4
