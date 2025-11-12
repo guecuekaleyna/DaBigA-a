@@ -47,24 +47,36 @@ score = 0
 highscore = load_highscore()
 
 running = True
+scored_this_round = False  # checkt, ob du in der aktuellen Runde schon gepunktet hast
+
 while running:
     # Event-Handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-            running = False
+
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
+            elif event.key == pygame.K_SPACE:
+                # z.B. neue Runde mit Space starten
+                scored_this_round = False
+
         elif event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             clicked_tile = table.get_tile_at(pos)
-            if clicked_tile:
+
+            if clicked_tile and not scored_this_round:
                 if clicked_tile.color == pygame.Color('green'):
                     score += 1
+                    scored_this_round = True
                 elif clicked_tile.color == pygame.Color('yellow'):
                     score -= 1
+                    scored_this_round = True
                 elif clicked_tile.color == pygame.Color('red'):
                     print('Game Over!')
                     running = False
+
 
     #Countdown Phase
     if phase == 'countdown':
@@ -84,7 +96,7 @@ while running:
             elif phase == 'red':
                 table.reset_red_tiles()
                 table.randomize_tiles()
-                difficulty *= 1.01
+                difficulity *= 1.01
                 phase_duration = max(1000, int(phase_duration * 0.99))
                 score += 5
                 phase = 'yellow'
