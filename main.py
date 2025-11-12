@@ -1,9 +1,10 @@
 
 import random
-
 import pygame
+import cv2
 
 from table import Table
+from Tile import Tile
 
 pygame.init()
 
@@ -45,6 +46,15 @@ phase_duration = 2000  # 5 Sekunden pro Phase
 difficulity = 1.0
 score = 0
 highscore = load_highscore()
+
+TILE_MAPPING = {}
+for row_list in table.tiles:
+    for tile in row_list:
+        x_min = int(tile.x)
+        y_min = int(tile.y)
+        x_max = int(tile.x + tile.width)
+        y_max = int(tile.y + tile.height)
+        TILE_MAPPING[tile] = (x_min, y_min, x_max, y_max)
 
 running = True
 scored_this_round = False  # checkt, ob du in der aktuellen Runde schon gepunktet hast
