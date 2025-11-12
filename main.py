@@ -33,7 +33,7 @@ clock = pygame.time.Clock()
 font = pygame.font.Font(None, 50)
 
 # Table-Setup
-table = Table(rows=5, columns=5, width=width, height=height, color=pygame.Color('green'))
+table = Table(rows=4, columns=4, width=width, height=height, color=pygame.Color('green'))
 table.split_the_table()
 table.randomize_tiles()
 
@@ -41,7 +41,7 @@ table.randomize_tiles()
 phase = 'countdown'
 countdown_time = 10
 phase_start_time = pygame.time.get_ticks()
-phase_duration = 5000  # 5 Sekunden pro Phase
+phase_duration = 2000  # 5 Sekunden pro Phase
 difficulity = 1.0
 score = 0
 highscore = load_highscore()
@@ -73,8 +73,9 @@ while running:
                 elif clicked_tile.color == pygame.Color('yellow'):
                     score -= 1
                     scored_this_round = True
-                elif clicked_tile.color == pygame.Color('red'):
+            elif clicked_tile.color == pygame.Color('red'):
                     print('Game Over!')
+                    scored_this_round = True
                     running = False
 
 
